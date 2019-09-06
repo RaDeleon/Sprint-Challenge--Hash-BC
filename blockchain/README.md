@@ -1,5 +1,7 @@
 # Blockchain Sprint Challenge
 
+## Angelo Deleon CS20 
+
 Welcome to the ground floor!  Satoshi Brian is giving you the chance to be the first people to mine Lambda Coins.  However, you'll have to compete with your fellow students to cash in.  
 
 Your task is to use your knowledge to write a mining program, similar to the ones you have been working with, to mine coins for the Lambda Blockchain.  
