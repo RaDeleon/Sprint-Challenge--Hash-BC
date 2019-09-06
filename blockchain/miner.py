@@ -4,6 +4,7 @@ import requests
 import sys
 
 from uuid import uuid4
+import time
 
 from timeit import default_timer as timer
 
@@ -21,11 +22,19 @@ def proof_of_work(last_proof):
     - Note:  We are adding the hash of the last proof to a number/nonce for the new proof
     """
 
-    start = timer()
+    start = time.time()
 
     print("Searching for next proof")
     proof = 0
     #  TODO: Your code here
+    print('last proof: ', last_proof)
+    proof = int(time.time())
+    while valid_proof(last_proof, str(proof)) is False:
+        time_now = time.time()
+        if time_now - start > 10:
+            print('restarting...')
+            return
+        proof *= 897
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
@@ -40,7 +49,8 @@ def valid_proof(last_hash, proof):
     """
 
     # TODO: Your code here!
-    pass
+    guess = f'{last_hash}{proof}'.encode()
+    guess_hashed = hashlib.sha256(guess).hexdigest()
 
 
 if __name__ == '__main__':
@@ -81,3 +91,4 @@ if __name__ == '__main__':
             print("Total coins mined: " + str(coins_mined))
         else:
             print(data.get('message'))
+            print("Total coins mined: " + str(coins_mined))
