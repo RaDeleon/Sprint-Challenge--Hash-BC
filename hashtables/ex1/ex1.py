@@ -25,6 +25,8 @@ What it do?:
 """
 
 
+# * BRUTE FORCE SOLUTION USED Wit 2 nested loopz
+
 def get_indices_of_item_weights(weights, length, limit):
     ht = HashTable(16)
 

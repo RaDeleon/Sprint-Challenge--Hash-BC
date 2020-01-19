@@ -26,18 +26,44 @@ def proof_of_work(last_proof):
 
     print("Searching for next proof")
     proof = 0
-    #  TODO: Your code here
+
+
+    #  TODO: Your code herecd
+
+    print("Searching for next proof")
     print('last proof: ', last_proof)
-    proof = int(time.time())
-    while valid_proof(last_proof, str(proof)) is False:
+    # proof = int(time.time())
+    proof = 0
+    while valid_proof(last_proof, proof) is False:
         time_now = time.time()
-        if time_now - start > 10:
-            print('restarting...')
+        if time_now - start > 5:
             return
-        proof *= 897
+        proof += 1
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
+    
     return proof
+
+
+    # print('last proof: ', last_proof)
+    # proof = int(time.time())
+    # while valid_proof(last_proof, str(proof)) is False:
+    #     time_now = time.time()
+    #     if time_now - start > 10:
+    #         print('restarting...')
+    #         return
+    #     proof *= 897
+
+    # print("Proof found: " + str(proof) + " in " + str(timer() - start))
+    # return proof
+
+    # while valid_proof(last_proof, proof) is False:
+    #     random_int = randint(1,7)
+    #     proof+= random_int
+    
+
+    # print("Proof found: " + str(proof) + " in " + str(timer() - start))
+    # return proof
 
 
 def valid_proof(last_hash, proof):
@@ -49,9 +75,21 @@ def valid_proof(last_hash, proof):
     """
 
     # TODO: Your code here!
-    guess = f'{last_hash}{proof}'.encode()
-    guess_hashed = hashlib.sha256(guess).hexdigest()
+    guess = f'{proof}'.encode()
+    hashed_p_prime = hashlib.sha256(guess).hexdigest()
 
+    prev_proof = f'{last_hash}'.encode()
+    hashed_p = hashlib.sha256(prev_proof).hexdigest()
+    return hashed_p_prime[:6] == hashed_p[-6:]
+
+
+    # guess = f'{last_hash}{proof}'.encode()ls
+    # guess_hashed = hashlib.sha256(guess).hexdigest()
+
+    # old_hash = hashlib.sha256(f'{last_proof}'.encode()).hexdigest()[-6:]
+    # new_hash = hashlib.sha256(f'{proof}'.encode()).hexdigest()[:6]
+    
+    # return old_hash==new_hash
 
 if __name__ == '__main__':
     # What node are we interacting with?
